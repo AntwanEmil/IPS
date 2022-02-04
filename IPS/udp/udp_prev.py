@@ -11,7 +11,7 @@ while 1:
 
 
 
-    print ("\t\tscanning ....")
+    print ("\t\tscanning for udp flooding....")
 
 
     flag =0
