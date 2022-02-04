@@ -44,11 +44,11 @@ while 1:
                             p = subprocess.Popen(["iptables", "-A", "INPUT", "-s", ip,"-j", "DROP"], stdout=subprocess.PIPE)
                             #blck= 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 80 -j DROP'
                             #os.popen(blck)
-                            subprocess.Popen(["iptables", "-A", "INPUT", "-s",ip ,"-j" , "DROP"] ,stdout=subprocess.PIPE) 
+                            subprocess.Popen(["iptables", "-A", "INPUT", "-p" ,"tcp","-s",ip ,"-j" , "DROP"] ,stdout=subprocess.PIPE) 
                             #blck = 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 443 -j DROP'
                             #os.popen(blck)
-                            blck  = 'sudo ufw deny from ' + ip
-                            os.popen(blck) 
+                            subprocess.Popen(["ufw" , "deny" , "from" , ip] ,stdout=subprocess.PIPE)
+
                             print('########this ip is auto-blocked from further communication')
                             blocked_ips.append(ip)
                             break

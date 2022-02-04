@@ -47,7 +47,7 @@ while 1:
     op = input("")
 
     if op == '9':
-        print (Fore.YELLOW + 'EXITING...')
+        print (Fore.CYAN + 'EXITING...')
         print(''+ Style.RESET_ALL)
         sys.exit()
     elif op == '1':
