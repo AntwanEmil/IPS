@@ -25,6 +25,7 @@ print(Fore.CYAN + '#### Simple IPS/IDS system created using python/bash ####')
 print ('')
 print (Fore.YELLOW + 'Choose one of the following options')
 print('')
+subprocess.call(['sh', './runme.sh'])
 while 1:
     print (Fore.YELLOW + '############################')
     print (Fore.YELLOW + '###        IPS/IDS        ##')
