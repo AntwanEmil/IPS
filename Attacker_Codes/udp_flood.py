@@ -1,4 +1,5 @@
 import socket
+import time
 
 UDP_IP = "138.68.183.168"
 UDP_PORT = 5005
@@ -10,3 +11,6 @@ print("message: %s" % MESSAGE)
 while 1:
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # UDP
     sock.sendto(MESSAGE.encode(), (UDP_IP, UDP_PORT))
+    print('sent udp packet')
+
+
