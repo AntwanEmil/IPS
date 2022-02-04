@@ -26,10 +26,13 @@ while 1:
     for line in file:
             try:
                     ip=re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line).group()
-                    if ip in blocked_ips:
+                    home = "198"
+                    if ip in blocked_ips or not ip or ip[0:3] == "198":
                         continue
                     if old_ip == ip:
                             flag += 1
+                            print(ip)
+                            print (flag)
                     else:
                             flag =0
                     old_ip = ip
@@ -39,10 +42,11 @@ while 1:
                             blck = 'iptables -A INPUT -s ' + ip + ' -j DROP'
                             os.popen(blck)
                             p = subprocess.Popen(["iptables", "-A", "INPUT", "-s", ip,"-j", "DROP"], stdout=subprocess.PIPE)
-                            blck= 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 80 -j DROP'
-                            os.popen(blck) 
-                            blck = 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 443 -j DROP'
-                            os.popen(blck)
+                            #blck= 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 80 -j DROP'
+                            #os.popen(blck)
+                            subprocess.Popen(["iptables", "-A", "INPUT", "-s",ip ,"-j" , "DROP"] ,stdout=subprocess.PIPE) 
+                            #blck = 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 443 -j DROP'
+                            #os.popen(blck)
                             blck  = 'sudo ufw deny from ' + ip
                             os.popen(blck) 
                             print('########this ip is auto-blocked from further communication')

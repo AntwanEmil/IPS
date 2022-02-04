@@ -48,9 +48,10 @@ while 1:
 
     if op == '9':
         print (Fore.YELLOW + 'EXITING...')
+        print(''+ Style.RESET_ALL)
         sys.exit()
     elif op == '1':
-        print(Fore.YELLOW +  '### UDP SCAN STARTED (type e to exit) ###')
+        print(Fore.YELLOW +  '### UDP SCAN STARTED (ctrl-c to exit) ###')
         print(''+ Style.RESET_ALL)
         p=subprocess.Popen(['python', './IPS/udp/udp_prev.py'])
         try:
