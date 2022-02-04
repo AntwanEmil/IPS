@@ -3,6 +3,13 @@ import subprocess
 import os
 import time
 import re
+import signal
+
+
+def handler(signum, frame):
+        exit(1)
+
+signal.signal(signal.SIGINT, handler)
 
 blocked_ips = [""];
 while 1:
@@ -20,7 +27,7 @@ while 1:
     for line in file:
             try:
                     ip=re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line).group()
-                    if ip in blocked_ips:
+                    if ip in blocked_ips or not ip:
                         continue
                     if old_ip == ip:
                             flag += 1
@@ -33,10 +40,11 @@ while 1:
                             blck = 'iptables -A INPUT -s ' + ip + ' -j DROP'
                             os.popen(blck)
                             p = subprocess.Popen(["iptables", "-A", "INPUT", "-s", ip,"-j", "DROP"], stdout=subprocess.PIPE)
-                            blck= 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 80 -j DROP'
-                            os.popen(blck) 
-                            blck = 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 443 -j DROP'
-                            os.popen(blck)
+                            #blck= 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 80 -j DROP'
+                            #os.popen(blck)
+                            subprocess.Popen(["iptables", "-A", "INPUT", "-s",ip ,"-j" , "DROP"] ,stdout=subprocess.PIPE) 
+                            #blck = 'iptables -A INPUT -s ' +ip +'-p tcp --destination-port 443 -j DROP'
+                            #os.popen(blck)
                             blck  = 'sudo ufw deny from ' + ip
                             os.popen(blck) 
                             print('########this ip is auto-blocked from further communication')

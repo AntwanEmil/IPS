@@ -3,7 +3,13 @@ import subprocess
 import os
 import time
 import re
+import signal
 
+
+def handler(signum, frame):
+        exit(1)
+
+signal.signal(signal.SIGINT, handler)
 blocked_ips = [""];
 while 1:
     stream = os.popen('tcpdump -c 10 -i eth0 "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0" >> syn.txt 2> /dev/null')
