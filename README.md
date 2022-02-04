@@ -1,10 +1,10 @@
- $$$$$$\ $$$$$$$\   $$$$$$\ <br />
- \_$$  _|$$  __$$\ $$  __$$\ <br />
-   $$ |  $$ |  $$ |$$ /  \__| <br />
-   $$ |  $$$$$$$  |\$$$$$$\  <br />
-   $$ |  $$  ____/  \____$$\ <br />
-   $$ |  $$ |      $$\   $$ |<br />
- $$$$$$\ $$ |      \$$$$$$  |<br />
- \______|\__|       \______/ <br />
+# IPS
 
-simple iPS/IDS using python/bash
+## simple iPS/IDS using python/bash <br />
+
+# HOW TO USE
+
+Make Sure you have root privilges (sudo su)
+  1. ./main.py
+  2. select one of the options.
+  3. to close the going scan press (ctrl+c).
