@@ -26,7 +26,7 @@ while 1:
     for line in file:
             try:
                     ip=re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line).group()
-                    if ip in blocked_ips:
+                    if ip in blocked_ips or "host-" not in line  or not ip:
                         continue
                     if old_ip == ip:
                             flag += 1

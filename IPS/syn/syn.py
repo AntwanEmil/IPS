@@ -27,7 +27,7 @@ while 1:
             try:
                     ip=re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line).group()
                     home = "198"
-                    if ip in blocked_ips or not ip or ip[0:3] == "198":
+                    if ip in blocked_ips or not ip or ip[0:3] == "198" or "host-" not in line :
                         continue
                     if old_ip == ip:
                             flag += 1

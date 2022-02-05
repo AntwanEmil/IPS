@@ -27,15 +27,14 @@ while 1:
     for line in file:
             try:
                     ip=re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', line).group()
-                    host = re.search(r'\bhost-\b',strs).group(0)
-                    if ip in blocked_ips or if not host:
+                    if ip in blocked_ips or "host-" not in line  or not ip:
                         continue
                     if old_ip == ip:
                             flag += 1
                     else:
                             flag =0
                     old_ip = ip
-                    if flag == 9:
+                    if flag == 7:
                             print('########icmp attack detected from ip: {}'.format(ip));
                             ## calling the bash script to blacklist this ip
                             blck = 'iptables -A INPUT -s ' + ip + ' -j DROP'
