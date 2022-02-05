@@ -31,8 +31,6 @@ while 1:
                         continue
                     if old_ip == ip:
                             flag += 1
-                            print(ip)
-                            print (flag)
                     else:
                             flag =0
                     old_ip = ip
